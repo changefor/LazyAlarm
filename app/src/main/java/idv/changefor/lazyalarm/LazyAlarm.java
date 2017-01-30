@@ -46,7 +46,7 @@ public class LazyAlarm extends AppCompatActivity implements View.OnClickListener
         ready = settings.getInt("READY", -1);
         delay = settings.getInt("DELAY", -1);
 
-        if(ready!=-1) {
+        if(ready!=-1 || delay!=-1) {
             tempUri = settings.getString("URI", null);
             startLazyAlarm();
         }
@@ -59,17 +59,17 @@ public class LazyAlarm extends AppCompatActivity implements View.OnClickListener
                 getAlarm();
                 break;
             case R.id.save:
-                startLazyAlarm();
-
-                this.finish();
+                savePreference();
+                LazyAlarm.this.finishAffinity();
                 break;
         }
     }
 
     private void startLazyAlarm() {
         setAlarm();
+        savePreference();
         try {
-            Thread.sleep(2000L);
+            Thread.sleep(1000L);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -86,10 +86,6 @@ public class LazyAlarm extends AppCompatActivity implements View.OnClickListener
 
     private void setAlarm() {
         Intent alarm = new Intent(AlarmClock.ACTION_SET_ALARM);
-        if(delay==-1) {
-            delay = Integer.valueOf(alrmTime.getText().toString());
-            if(delay>60) delay = 60;
-        }
         Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minute = c.get(Calendar.MINUTE);
@@ -110,9 +106,15 @@ public class LazyAlarm extends AppCompatActivity implements View.OnClickListener
         alarm.putExtra(AlarmClock.EXTRA_SKIP_UI, true);
         Log.d(TAG,"set Alarm!!");
         this.startActivity(alarm);
+    }
 
+    private void savePreference() {
         SharedPreferences settings = getSharedPreferences ("LAZYALARM", 0);
         SharedPreferences.Editor PE = settings.edit();
+        if(delay==-1) {
+            delay = Integer.valueOf(alrmTime.getText().toString());
+            if(delay > 60) delay = 60;
+        }
         PE.putInt("READY",1);
         PE.putInt("DELAY", delay);
         PE.putString("URI", rtURI.toString());
