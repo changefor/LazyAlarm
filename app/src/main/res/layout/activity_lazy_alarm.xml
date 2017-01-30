@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_lazy_alarm"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="idv.changefor.lazyalarm.LazyAlarm">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:text="@string/alrmtime" />
+            <EditText
+                android:id="@+id/alarmtime"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="20"
+                android:textSize="16sp"
+                android:inputType="number"
+                android:hint="@string/timehint"
+                android:background="#63f8f3"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/rtpicker"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rtpicker"
+                />
+            <TextView
+                android:id="@+id/rtresult"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="20"
+                android:textSize="16sp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/save"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/save"/>
+    </TableLayout>
+</RelativeLayout>

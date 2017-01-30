@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LazyAlarm</string>
+    <string name="alrmtime">AlarmTime</string>
+    <string name="timehint">Minutes</string>
+    <string name="rtpicker">RingTone</string>
+    <string name="save">Save settings</string>
+</resources>
